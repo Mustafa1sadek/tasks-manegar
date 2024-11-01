@@ -1,0 +1,28 @@
+
+<div class="m-3">
+  <a routerLink="add-task"  class="btn btn-primary m-2 ">new task</a>
+
+  @if (_TasksService.tasks.length == 0 ) {
+    <div  class="alert alert-primary">
+      <p>There is no tasks</p>
+    </div>
+  }
+  @else if (_TasksService.tasks.length != 0) {
+    <ul class="list-group w-75 m-auto">
+      @for (task of _TasksService.tasks; track $index ; let i =  $index )
+      {
+        <li class="list-group-item d-flex justify-content-between">
+
+
+          <a  [routerLink] = "['task']"  [queryParams]="{id:i}" >{{task.title}}</a>
+          <button class="btn btn-danger" (click)="deleteTask(i)">Delete</button>
+        </li>
+      }
+    </ul>
+  }
+
+
+  <div class="tasks">
+
+  </div>
+</div>
